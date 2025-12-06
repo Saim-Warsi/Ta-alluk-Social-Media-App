@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import User from "../models/User.js"
 
 const storySchema = new mongoose.Schema({
       user:{type: String, ref:User, required: true},
