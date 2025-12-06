@@ -1,5 +1,5 @@
 import fs from 'fs'
-import {imageKit} from '../configs/imageKit.js'
+import imageKit from '../configs/imageKit.js'
 import Message from '../models/Message.js';
 
 //this empty object stores SS event connections
