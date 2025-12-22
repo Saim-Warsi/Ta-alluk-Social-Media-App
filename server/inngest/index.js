@@ -226,7 +226,7 @@ const sendNotificationOfUnseenMessages = inngest.createFunction(
       body
     })
     }
-    return 
+    return {message: "Notification sent."}
   }
 );
 
