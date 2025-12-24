@@ -330,8 +330,18 @@ export const getUserProfiles = async (req,res)=> {
       profile
     })
 
+    // res.json({
+    //   success: true,
+    //   posts: posts || [], // Ensure it's at least an empty array
+    //   profile: {
+    //     ...profile._doc, // spread the actual data
+    //     followers: profile.followers || [], // Force empty array if undefined
+    //     following: profile.following || []  // Force empty array if undefined
+    //   }
+    // });
+
   } catch (error) {
-      console.log(err)
+      console.log(error)
       res.json({success:false, 
         message: err.message
       })
