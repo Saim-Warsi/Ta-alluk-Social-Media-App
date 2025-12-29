@@ -32,6 +32,7 @@ const ProfileModal = ({setShowEdit}) => {
             userData.append("bio", bio);
             userData.append("location", location);
             userData.append("full_name", full_name);
+            profile_picture && userData.append("profile", profile_picture)
             cover_photo && userData.append("cover", cover_photo)
 
             const token = await getToken()
