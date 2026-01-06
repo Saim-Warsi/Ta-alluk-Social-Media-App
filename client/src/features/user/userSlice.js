@@ -21,20 +21,28 @@ export const fetchUser = createAsyncThunk('user/fetchUser',async(token)=>{
 
 });
 
-//update the existing user data
+
+// update the existing user data
 export const updateUser = createAsyncThunk('user/update',
-    async(userData, token)=>{
-     const {data} =   await api.post('/api/user/update',{
-        headers:{Authorization: `Bearer ${token}`}
-     })
-        if (data.success) {
-            toast.success(data.message)
-            return data.user
-        } else {
-            toast.error(data.message)
-            return null
+    async ({ userData, token }) => { 
+        try {
+          const { data } = await api.post('/api/user/update', userData, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            if (data.success) {
+                toast.success(data.message)
+                return data.user
+            } else {
+                toast.error(data.message)
+                return null
+            }
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Update failed")
+            throw error
         }
-});
+    }
+);
 
 
 const userSlice = createSlice({

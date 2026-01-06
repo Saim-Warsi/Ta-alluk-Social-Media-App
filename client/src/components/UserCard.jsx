@@ -1,18 +1,52 @@
 import React from 'react'
 import { dummyUserData } from '../../assets/assets'
 import { MapPin, MessageCircle, UserPlus, Plus } from 'lucide-react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { useAuth } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
+import api from '../api/axios';
+import { fetchUser } from '../features/user/userSlice';
 
-const UserCard = ({user}) => {
+const UserCard =  ({user}) => {
   
     const currentUser = useSelector((state) => state.user.value);
+    const { getToken } = useAuth()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const handleFlow = async ()=>{
-
+    const handleFollow = async ()=>{
+      try {
+        const { data } = await api.post('/api/user/follow', {id: user._id},{
+          headers: {Authorization: `Bearer ${await getToken()}`}
+        })
+        if(data.success){
+          toast.success(data.message)
+          dispatch(fetchUser(await getToken()))
+        } else{
+          toast(data.message)
+        }
+      } catch (error) {
+        toast.error(error.message)
+      }
     };
-
+    
     const handleConnectionRequest = async ()=>{
-
+      if (currentUser.connections.includes(user._id)) {
+        return navigate(`/messages/${user._id}`)
+      } 
+      try {
+         const { data } = await api.post('/api/user/connect', {id: user._id},{
+          headers: {Authorization: `Bearer ${await getToken()}`}
+        })
+        if(data.success){
+          toast.success(data.message)
+        } else{
+          toast(data.message)
+        }
+      } catch (error) {
+        toast.error(error.message)
+      }
     };
   return (
     <div key={user._id} className='p-4 pt-6 flex flex-col justify-between w-72 shadow-xl hover:shadow-lg transition duration-300 border border-gray-100 rounded-md'>
@@ -32,7 +66,7 @@ const UserCard = ({user}) => {
         </div>
         <div className="flex mt-4 gap-2">
               {/* follow button */}
-              <button onClick={handleFlow} disabled={currentUser?.following.includes(user._id)} 
+              <button onClick={handleFollow} disabled={currentUser?.following.includes(user._id)} 
               className='w-full py-2 rounded-full flex justify-center items-center gap-2 bg-yellow-500 hover:bg-amber-500 active:scale-95 transition text-white cursor-pointer'>
                 <UserPlus className='w-4 h-4' /> {currentUser?.following.includes(user._id) ? 'Following' : 'Follow'}
               </button>

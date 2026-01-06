@@ -68,26 +68,6 @@ const UserProfileInfo = ({ user, posts, profileId, setShowEdit }) => {
               </span>
               <div className="text-xs sm:text-sm text-gray-500 ml-1.5 ">Following</div>
             </div>
-            {/* <div className="flex items-center">
-  <span className="text-gray-900">
-    {posts?.length || 0}
-  </span>
-  <div className="text-xs sm:text-sm text-gray-500 ml-1.5">Posts</div>
-</div>
-
-<div className="flex items-center">
-  <span className="text-gray-900">
-    {user?.followers?.length || 0}
-  </span>
-  <div className="text-xs sm:text-sm text-gray-500 ml-1.5">Followers</div>
-</div>
-
-<div className="flex items-center">
-  <span className="text-gray-900">
-    {user?.following?.length || 0}
-  </span>
-  <div className="text-xs sm:text-sm text-gray-500 ml-1.5">Following</div>
-</div> */}
           </div>
         </div>
       </div>

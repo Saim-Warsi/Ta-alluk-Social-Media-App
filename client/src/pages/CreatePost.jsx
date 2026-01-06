@@ -3,17 +3,50 @@ import { dummyUserData } from '../../assets/assets'
 import { Image, X } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useSelector } from 'react-redux'
+import { useAuth } from '@clerk/clerk-react'
+import api from '../api/axios'
+import { useNavigate } from 'react-router-dom'
+
 const CreatePost = () => {
-  const [images, setImages] = useState('')
-  const [content, setContent] = useState([])
+  const navigate = useNavigate()
+  const [images, setImages] = useState([])
+  const [content, setContent] = useState('')
   const [loading, setLoading] = useState(false)
 
   const user = useSelector((state)=>state.user.value);
-  const handleSubmit = async ()=>{
+  const {getToken} = useAuth()
 
-  }
+  const handleSubmit = async ()=>{
+    if(!images.length && !content){
+      return toast.error("Can't create an empty post.")
+    }
+      setLoading(true)
+      const postType = images.length && content ? 'text_with_image' : images.length ? 'image' :'text'
+
+      try {
+        const formData = new FormData();
+        formData.append('content',content)
+        formData.append('post_type',postType)
+        images.map((image)=>{
+        formData.append('images', image)
+        })
+        const {data} = await api.post('/api/post/add',formData,{headers:{Authorization: `Bearer ${await getToken()}`}})
+
+        if(data.success){
+          navigate('/')
+        } else{
+          console.log(data.message)
+          throw new Error(data.message)
+        }
+      } catch (error) {
+        console.log(error.message)
+        throw new Error(error.message)
+      }
+    setLoading(false)
+    }
+  
   return (
-    <div className='min-h-screen bg-gradient-to-b from-amber-50 to-white '>
+    <div className='min-h-screen '>
       <div className='max-w-6xl mx-auto p-6'>
           {/* Title */}
           <div className='mb-8'>
@@ -68,7 +101,7 @@ const CreatePost = () => {
                     <Image className='size-6'/>
                   </label>
 
-                  <input type="file" i  d='images' accept='image/*' hidden multiple onChange={(e)=>setImages([...images, ...e.target.files])}/>
+                  <input type="file" id='images' accept='image/*' hidden multiple onChange={(e)=>setImages([...images, ...e.target.files])}/>
 
                   <button
                   onClick={()=>toast.promise(

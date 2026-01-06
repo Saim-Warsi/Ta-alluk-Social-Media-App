@@ -18,7 +18,7 @@ export const addUserStory = async (req,res)=>{
             const fileBuffer = fs.readFileSync(media.path)
             const response = await imageKit.upload({
                 file:fileBuffer,
-                fileName:media.originalName
+                fileName:media.originalname
             })
             media_url = response.url
         }
@@ -49,7 +49,7 @@ export const addUserStory = async (req,res)=>{
 export const getStories = async (req,res)=>{
     try {
         
-     const {userId} = res.auth();
+     const {userId} = req.auth();
      const user = await User.findById(userId);
 
      //get their followers and following

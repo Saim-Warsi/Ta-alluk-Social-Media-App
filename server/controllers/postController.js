@@ -7,7 +7,7 @@ import { escape } from 'querystring';
 export const addPost= async(req,res)=>{
     try{
        const {userId} = req.auth();
-       const {content, post_type} = req.body();
+       const {content, post_type} = req.body;
        const images = req.files
        
    
@@ -70,7 +70,7 @@ export const getFeedPosts= async(req,res)=>{
 export const likePost = async(req,res)=>{
     try{
         const {userId} = req.auth()
-        const {postId} = req.body()
+        const {postId} = req.body
 
         const post = await Post.findById(postId)
 

@@ -80,7 +80,7 @@ export const updateUserData = async (req, res) => {
     const buffer = fs.readFileSync(cover.path)
     const responce = await imageKit.upload({
       file: buffer,
-      fileName: profile.originalname,
+      fileName: cover.originalname,
     })
     const url = imageKit.url({
       path: responce.filePath,
@@ -124,7 +124,7 @@ export const discoverUsers  = async (req, res) => {
     ]
    })
 
-   const filteredUsers = allUsers.filer(user=> user._id !== userId)
+   const filteredUsers = allUsers.filter(user=> user._id !== userId)
    res.json({
       success: true,
       users: filteredUsers,
@@ -180,7 +180,7 @@ export const unfollowUser = async (req, res) => {
     user.following = user.following.filter(user=>user !== id);
     await user.save()
 
-    const toUser = await user.findById(id)
+    const toUser = await User.findById(id)
     toUser.followers = toUser.followers.filter(user=>user!== userId);
     await toUser.save()
     
@@ -210,7 +210,7 @@ export const sendConnectionRequest = async(req,res)=>{
 
       //check if the user is already in ta'alluk
       const connection = await Connection.findOne({
-        or:[
+        $or:[
           {from_user_id: userId , to_user_id: id},
           {from_user_id: id , to_user_id: userId},
         ]
@@ -279,7 +279,7 @@ export const getUserConnections = async(req,res)=>{
 export const acceptConnectionRequest = async(req,res)=>{
   try{
       const {userId} = req.auth()
-      const {id} = req.body()
+      const {id} = req.body
 
       const connection = await Connection.findOne({from_user_id: id, to_user_id: userId})
       
@@ -343,7 +343,7 @@ export const getUserProfiles = async (req,res)=> {
   } catch (error) {
       console.log(error)
       res.json({success:false, 
-        message: err.message
+        message: error.message
       })
   }
 }

@@ -4,6 +4,7 @@ import { Pencil } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../features/user/userSlice.js';
 import { useAuth } from '@clerk/clerk-react';
+import toast from 'react-hot-toast';
 
 
 const ProfileModal = ({setShowEdit}) => {
@@ -36,11 +37,12 @@ const ProfileModal = ({setShowEdit}) => {
             cover_photo && userData.append("cover", cover_photo)
 
             const token = await getToken()
-            dispatch(updateUser({userData, token}))
+            dispatch(updateUser({userData, token})) 
 
             setShowEdit(false)
         } catch (error) {
-            
+            toast.error(error.message)
+            console.error(error.message)
         }
     }
 
@@ -55,7 +57,7 @@ const ProfileModal = ({setShowEdit}) => {
                     Edit Profile
                 </h1>
 
-                <form className='space-y-4' onSubmit={handleSaveProfile}>
+                <form className='space-y-4' onSubmit={(e)=>toast.promise(handleSaveProfile(e),{Loading:"Saving..."})}>
                     <div className='flex flex-col items-start gap-3'>
                         <label htmlFor="profile_picture" className='block text-sm font-medium text-gray-700 mb-1'>
                             Profile Picture

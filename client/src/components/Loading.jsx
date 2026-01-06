@@ -9,13 +9,7 @@ const Loading = () => {
         <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-white animate-spin"></div>
     </div>
 
-    {/* Loading text */}
-    <div className="text-white text-sm font-medium tracking-wide">
-        Loading
-        <span className="inline-block animate-[bounce_1.4s_ease-in-out_infinite]">.</span>
-        <span className="inline-block animate-[bounce_1.4s_ease-in-out_infinite_0.2s]">.</span>
-        <span className="inline-block animate-[bounce_1.4s_ease-in-out_infinite_0.4s]">.</span>
-    </div>
+   
 </div>  )
 }
 
