@@ -1,40 +1,39 @@
 import { assets } from '../../assets/assets'
-import {Star} from "lucide-react"
 import { SignIn } from '@clerk/clerk-react';
 
 
 const Login = () => {
   return (
-    <div className='min-h-screen flex flex-col md:flex-row'>
-      {/* background image */}
-      <img src={assets.bgImage} alt="" className='absolute top-0 left-0 -z-1 w-full h-full object-cover opacity-70' />
-
-      {/* leftside (branding) */}
-      <div className="flex-1 flex flex-col items-start justify-between p-6 md:p-10 lg:pl-40">
-        <img src={assets.logo} alt="Ta'allukat" className='h-12 object-contain'/>
-        <div className="">
-          <div className=" flex items-center gap-3 mb-4 max-md:mt-10">
-            <img src={assets.group_users} alt="group users" className='h-8 md:h-10 '/>
-            <div className="">
-              <div className="flex">
-                {Array(5).fill(0).map((_, i)=>(<Star key={i} className='size-4 md:size-4.5 text-transparent fill-amber-500 '/>))}
-              </div>
-              <p>Used by many</p>
-            </div>
-          </div>
-          <h1 className='text-3xl md:text-6xl md:pb-2 font-bold text-amber-950 bg-clip-text '>Build Real Connections on Ta'alluk</h1>
-          <p className='text-xl md:text-3xl max-w-72 md:max-w-md'>Connect with communities on Ta'alluk</p>
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* bg image */}
+      <img src={assets.bgImage} alt="" className='absolute top-0 left-0 w-full h-full object-cover opacity-80 backdrop:blur-sm' />
+  {/* Main Content */}
+  <div className="flex-1 flex items-center justify-center px-6 py-12 z-5">
+    <div className="w-full max-w-md">
+      {/* Hero Section */}
+      <div className="text-center mb-10">
+        <div className="mb-1 flex justify-center">
+          <img 
+            src={assets.logo} 
+            alt="Ta'alluk" 
+            className="w-35"
+          />
         </div>
-        <span className="md:h-10">
-
-        </span>
       </div>
 
-      {/* rightside (form) */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-10 ">
+      {/* Auth Box */}
+      <div className='flex justify-center'>
         <SignIn />
       </div>
+     
+
+      {/* Footer */}
+      <div className="mt-10 text-center text-sm text-gray-500">
+        By continuing, you agree to Ta'alluk's Terms of Service and Privacy Policy
+      </div>
     </div>
+  </div>
+</div>
   )
 }
 

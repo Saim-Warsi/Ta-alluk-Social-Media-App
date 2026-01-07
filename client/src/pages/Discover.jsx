@@ -43,42 +43,9 @@ const Discover = () => {
       dispatch(fetchUser(token));
     });
   }, []);
-  // return (
-  //   <div className="min-h-screen bg-white">
-  //     <div className="max-w-6xl mx-auto p-6">
-  //       {/* titles */}
-  //       <div className="mb-8">
-  //         <h1 className="text-3xl font-bold text-slate-900 mb-2">
-  //           Discover People
-  //         </h1>
-  //         <p className="text-slate-600">
-  //           Connect with amazing people and grow your network
-  //         </p>
-  //       </div>
-  //       {/* Search */}
-  //       <div className="shadow-lg mb-8 rounded-md bg-white/80 flex items-center px-3">
-  //         <input
-  //           type="text"
-  //           placeholder="Find ta'alluks"
-  //           className="w-full py-4  focus:outline-none"
-  //           value={input}
-  //           onChange={(e) => setInput(e.target.value)}
-  //           onKeyDown={handleSearch}
-  //         />
-  //         <Search className="size-6" />
-  //       </div>
-  //       <div className="flex flex-wrap gap-6">
-  //         {users.map((user, index) => (
-  //           <UserCard key={index} user={user} />
-  //         ))}
-  //       </div>
-  //       {loading && <p></p>}
-  //     </div>
-  //   </div>
-  // );
-  // Replace your return statement with this:
+  
 return (
-  <div className='flex-1 min-h-screen bg-gray-50 overflow-y-auto'>
+  <div className='flex-1 min-h-screen bg-gray-50 overflow-y-auto ml-16 sm:ml-20 lg:ml-60 xl:ml-72'>
     <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8'>
       {/* Header */}
       <div className='mb-6 lg:mb-8'>

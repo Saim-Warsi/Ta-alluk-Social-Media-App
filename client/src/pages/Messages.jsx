@@ -7,41 +7,9 @@ const Messages = () => {
 
   const { connections } = useSelector((state)=>state.connections)
   const navigate = useNavigate()
-  return (
-    // <div className='min-h-screen relative bg-slate-50 '>
-    //     <div className="max-w-6xl mx-auto p-6">
-    //       {/* titles */}
-    //       <div className='mb-8'>
-    //       <h1 className='text-3xl font-bold text-slate-900 mb-2'>Messages</h1>
-    //       <p className='text-slate-600'>
-    //         Talk to your ta'allukats
-    //       </p>
-    //       </div>
-    //     {/* connected users */}
-    //     <div className="flex flex-col gap-3">
-    //       {connections.map((user)=>(
-    //         <div key={user._id} className='max-w-xl flex  gap-5 p-6 bg-white shadow rounded-md'>
-    //           <img src={user.profile_picture} alt="" className='rounded-full size-12 mx-auto'/>
-    //           <div>
-    //             <p>{user.full_name}</p>
-    //             <p>@{user.username}</p>
-    //             <p>{user.bio}</p>
-    //           </div>
-    //           <div className="flex flex-col gap-2 mt-4">
-    //             <button onClick={()=>navigate(`/messages/${user._id}`)} className='size-10 flex items-center justify-center text-sm rounded bg-slate-100 hover:bg-slate-200 text-slate-800 active:scale-95 transition cursor-pointer gap-1'>
-    //               <MessageSquare  className='w-4 h-4'/>
-    //             </button>
-    //              <button onClick={()=>navigate(`/profile/${user._id}`)} className='size-10 flex items-center justify-center text-sm rounded bg-slate-100 hover:bg-slate-200 text-slate-800 active:scale-95 transition cursor-pointer '>
-    //               <UserRound  className='w-4 h-4' />
-    //             </button>
-    //           </div>
-    //         </div>
-    //       ))} 
-    //     </div>
-    //     </div>
-    // </div>
-    
-   <div className='flex-1 min-h-screen bg-gray-50 overflow-y-auto'>
+  return (  
+   <div className='flex-1 min-h-screen bg-gray-50 overflow-y-auto ml-16 sm:ml-20 lg:ml-60 xl:ml-72'>
+  
     <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8'>
       {/* Header */}
       <div className='mb-6 lg:mb-8'>

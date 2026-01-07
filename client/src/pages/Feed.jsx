@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react'
 import { assets, dummyPostsData } from '../../assets/assets';
 import Loading from '../components/Loading';
@@ -13,14 +15,7 @@ const Feed = () => {
   const [loading, setLoading] = useState(true);
   const {getToken} = useAuth();
 
-
-
-
   const fetchFeeds = async ()=>{
-    // setFeeds(dummyPostsData)  static rendering
-    // setLoading(false);
-
-    //dynamic rendering real time posts
     try {
       setLoading(true)
       const {data} = await api.get('/api/post/feed',{headers:{Authorization: `Bearer ${await getToken()}`}})
@@ -40,7 +35,7 @@ const Feed = () => {
   },[])
 
   return !loading ? (
-    <div className='w-full bg-gray-50 overflow-y-scroll no-scrollbar py-10 xl:pr-5 flex items-start justify-center xl:gap-8'>
+    <div className='ml-16 sm:ml-20 lg:ml-60 xl:ml-72 2xl:ml-0 w-auto bg-gray-50 overflow-y-scroll no-scrollbar py-10 xl:pr-5 flex items-start justify-center xl:gap-8'>
         {/* stories and posts */}
         <div className="">
           <StoriesBar />
@@ -52,7 +47,7 @@ const Feed = () => {
         </div>
 
         {/* right sidebar */}
-        <div className="max-xl:hidden fixed right-2.5  top-2">
+        <div className="max-2xl:hidden fixed right-2.5 top-2">
           <div className="max-w-75 bg-white text-xs p-4 rounded-md inline-flex flex-col gap-2 shadow">
             <h3 className='text-slate-800 font-semibold'>Sponsored</h3>
             <img src={assets.sponsored_img} className='w-75 h-50 rounded-md' alt="" />
@@ -65,8 +60,6 @@ const Feed = () => {
         </div>
     </div>
   ) : <Loading />
-
-
 }
 
 export default Feed

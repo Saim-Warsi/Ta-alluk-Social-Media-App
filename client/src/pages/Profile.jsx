@@ -50,7 +50,7 @@ const Profile = () => {
   }, [profileId, currentUser]);
 
   return user ? (
-    <div className="relative h-full overflow-y-scroll bg-gray-50 p-6">
+    <div className="relative h-full overflow-y-scroll bg-gray-50 p-6 ml-8 sm:ml-15 lg:ml-60 xl:ml-72">
       <div className="max-w-3xl mx-auto">
         {/* profile card */}
         <div className="bg-white rounded-2xl shadow overflow-hidden ">

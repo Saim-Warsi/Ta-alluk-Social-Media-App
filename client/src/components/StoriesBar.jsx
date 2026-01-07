@@ -37,8 +37,7 @@ const StoriesBar = () => {
     }, [])
 
     return (
-        <div className='w-screen sm:w-[calc(100vw-240px)] lg:max-w-2xl no-scrollbar overflow-x-auto px-4'>
-            <div className="flex gap-4 pb-5">
+<div className='w-[calc(100vw-64px)] sm:w-[calc(100vw-80px)] lg:w-[calc(100vw-240px)] xl:w-[calc(100vw-288px)] max-w-2xl no-scrollbar overflow-x-auto px-4'>            <div className="flex gap-4 pb-5">
                 {/* add story */}
                 <div onClick={()=>setShowModal(true)} className="rounded-lg shadow-sm min-w-30 max-w-30 max-h-40 aspect-3/4 cursor-pointer hover:shadow-lg transition-all duration-200 border-2 border-dashed border-yellow-500">
                     <div className="h-full flex flex-col items-center justify-center p-4">
