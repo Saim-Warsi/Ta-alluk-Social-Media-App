@@ -5,10 +5,10 @@ import { SignIn } from '@clerk/clerk-react';
 const Login = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      {/* bg image */}
-      <img src={assets.bgImage} alt="" className='absolute top-0 left-0 w-full h-full object-cover opacity-80 backdrop:blur-sm' />
+      {/* bg image
+      <img src={assets.bgImage} alt="" className='absolute top-0 left-0 w-full h-full object-cover opacity-80 backdrop:blur-sm' /> */}
   {/* Main Content */}
-  <div className="flex-1 flex items-center justify-center px-6 py-12 z-5">
+  <div className="flex-1  flex items-center justify-center px-6 py-12 z-5">
     <div className="w-full max-w-md">
       {/* Hero Section */}
       <div className="text-center mb-10">
@@ -16,8 +16,11 @@ const Login = () => {
           <img 
             src={assets.logo} 
             alt="Ta'alluk" 
-            className="w-35"
+            className="w-35 lg:w-55"
           />
+        </div>
+        <div className='font-light text-xs text-gray-600'>
+          By Saim.
         </div>
       </div>
 
@@ -27,10 +30,7 @@ const Login = () => {
       </div>
      
 
-      {/* Footer */}
-      <div className="mt-10 text-center text-sm text-gray-500">
-        By continuing, you agree to Ta'alluk's Terms of Service and Privacy Policy
-      </div>
+     
     </div>
   </div>
 </div>

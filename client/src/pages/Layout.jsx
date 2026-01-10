@@ -20,11 +20,7 @@ const Layout = () => {
       <Outlet />
       </div>
     </div>
-    {/* {
-      sideBarOpen ? (<X  onClick={()=>setSideBarOpen(false)}  className='absolute top-3 right-3 p-2 z-100 bg-white rounded-md shadow-lg w-10 h-10 text-gray-600 sm:hidden' />)
-      :
-      (<Menu onClick={()=>setSideBarOpen(true)} className="absolute top-3 right-3 p-2 z-100 bg-white rounded-md shadow-lg w-10 h-10 text-gray-600 sm:hidden" />)
-    } */}
+ 
     </>
   ) : (
     <div className='mt-[50%]'>

@@ -312,6 +312,43 @@ export const acceptConnectionRequest = async(req,res)=>{
 };
 
 //getUserProfiles function
+// export const getUserProfiles = async (req,res)=> {
+//   try {
+    
+//     const {profileId} = req.body;
+//     const profile = await User.findById(profileId)
+//     if(!profile){
+//         res.json({success:false, 
+//         message: "Profile not found"
+//       })
+//     }
+
+//     const posts = await Post.find({user: profileId}).populate('user');
+//     res.json({
+//       success:true,
+//       posts,
+//       profile
+//     })
+
+//     // res.json({
+//     //   success: true,
+//     //   posts: posts || [], // Ensure it's at least an empty array
+//     //   profile: {
+//     //     ...profile._doc, // spread the actual data
+//     //     followers: profile.followers || [], // Force empty array if undefined
+//     //     following: profile.following || []  // Force empty array if undefined
+//     //   }
+//     // });
+
+//   } catch (error) {
+//       console.log(error)
+//       res.json({success:false, 
+//         message: error.message
+//       })
+//   }
+// }
+
+//getUserProfiles function
 export const getUserProfiles = async (req,res)=> {
   try {
     
@@ -323,22 +360,22 @@ export const getUserProfiles = async (req,res)=> {
       })
     }
 
-    const posts = await Post.find({user: profileId}).populate('user');
+    const posts = await Post.find({user: profileId})
+        .populate('user')
+        .populate('comments.user')
+        .populate({
+            path: 'shared_post',
+            populate: [
+                { path: 'user' },
+                { path: 'comments.user' }
+            ]
+        });
+    
     res.json({
       success:true,
       posts,
       profile
     })
-
-    // res.json({
-    //   success: true,
-    //   posts: posts || [], // Ensure it's at least an empty array
-    //   profile: {
-    //     ...profile._doc, // spread the actual data
-    //     followers: profile.followers || [], // Force empty array if undefined
-    //     following: profile.following || []  // Force empty array if undefined
-    //   }
-    // });
 
   } catch (error) {
       console.log(error)
@@ -347,3 +384,30 @@ export const getUserProfiles = async (req,res)=> {
       })
   }
 }
+
+//get suggested users
+export const getSuggestedUsers = async (req, res) => {
+  try {
+    const {userId} = req.auth()
+    const user = await User.findById(userId)
+    
+    // Get users that are not: current user, already following, or already connected
+    const excludeIds = [userId, ...user.following, ...user.connections]
+    
+    const suggestedUsers = await User.find({
+      _id: {$nin: excludeIds}
+    }).limit(10)
+    
+    res.json({
+      success: true,
+      users: suggestedUsers
+    })
+    
+  } catch (err) {
+    console.log(err.message)
+    return res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};

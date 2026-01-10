@@ -32,8 +32,8 @@ export const addUserStory = async (req,res)=>{
             media_type
         })
         //schedule time for automatic story deletion
-        await inngest.send({name: 'app/story-delete',
-            data:{storyId: story._id}
+        await inngest.send({name: 'app/story.delete',
+            data:{storyId: story._id.toString()}
         })
 
         res.json({success:true});
