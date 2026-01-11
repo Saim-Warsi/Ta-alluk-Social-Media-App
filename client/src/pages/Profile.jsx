@@ -102,7 +102,9 @@ const Profile = () => {
           {/* Posts */}
           {activeTab === "posts" && (
             <div className="mt-6 flex flex-col items-center gap-6 ">
-              {posts.map((post) => (
+              {[...posts]
+              .reverse()
+              .map((post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             </div>
@@ -111,7 +113,8 @@ const Profile = () => {
           {/* media */}
           {activeTab === "media" && (
             <div className="flex flex-wrap mt-6 max-w-6xl ">
-              {posts
+              {[...posts]
+              .reverse()
                 .filter((post) => post.image_urls.length > 0)
                 .map((post) => (
                   <>
