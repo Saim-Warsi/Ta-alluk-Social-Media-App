@@ -1,5 +1,5 @@
 import React from 'react'
-import { Search, MoreVertical, Phone, Video } from 'lucide-react'
+import { Search, Phone, Video } from 'lucide-react'
 import { UserRound, MessageSquare } from 'lucide-react'
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
