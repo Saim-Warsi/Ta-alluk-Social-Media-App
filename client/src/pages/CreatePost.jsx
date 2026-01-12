@@ -46,7 +46,7 @@ const CreatePost = () => {
     }
   
   return (
-    <div className='min-h-screen ml-16 sm:ml-20 lg:ml-60 xl:ml-72'>
+    <div className='min-h-screen ml-10 sm:ml-15 lg:ml-60 xl:ml-72'>
       <div className='max-w-6xl mx-auto p-6'>
           {/* Title */}
           <div className='mb-8'>

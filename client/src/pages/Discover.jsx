@@ -45,7 +45,7 @@ const Discover = () => {
   }, []);
   
 return (
-  <div className='flex-1 min-h-screen bg-gray-50 overflow-y-auto ml-16 sm:ml-20 lg:ml-60 xl:ml-72'>
+  <div className='flex-1 min-h-screen bg-gray-50 overflow-y-auto ml-10 sm:ml-15 lg:ml-60 xl:ml-72'>
     <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8'>
       {/* Header */}
       <div className='mb-6 lg:mb-8'>

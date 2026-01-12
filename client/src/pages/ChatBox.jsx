@@ -208,7 +208,7 @@ const ChatBox = () => {
   }, [messages])
 
   return user && (
-    <div className='min-h-screen bg-slate-50 ml-16 sm:ml-20 lg:ml-60 xl:ml-72'>
+    <div className='min-h-screen bg-slate-50 ml-10 sm:ml-15 lg:ml-60 xl:ml-72'>
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col h-screen">
           {/* Header */}
