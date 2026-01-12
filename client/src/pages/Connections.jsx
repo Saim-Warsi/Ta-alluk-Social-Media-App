@@ -372,7 +372,7 @@ const Connections = () => {
                   <div className="flex flex-col sm:flex-row gap-2">
                     <button
                       onClick={() => navigate(`/profile/${user._id}`)}
-                      className="flex-1 px-4 py-2.5 text-sm font-medium rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white active:scale-95 transition-all shadow-sm hover:shadow-md"
+                      className="flex-1 px-4 py-2.5 text-sm font-medium rounded-lg bg-yellow-400 hover:bg-yellow-500 text-white active:scale-95 transition-all shadow-sm hover:shadow-md"
                     >
                       View Profile
                     </button>
@@ -389,7 +389,7 @@ const Connections = () => {
                     {currentTab === 'Pending' && (
                       <button
                         onClick={() => acceptConnection(user._id)}
-                        className="flex-1 px-4 py-2.5 text-sm font-medium rounded-lg bg-green-500 hover:bg-green-600 text-white active:scale-95 transition-all shadow-sm"
+                        className="flex-1 px-4 py-2.5 text-sm font-medium rounded-lg bg-yellow-400 hover:bg-yellow-500 text-white active:scale-95 transition-all shadow-sm"
                       >
                         Accept
                       </button>
